@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Todo Task Manager</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Update Task</h1>
+  <div class="form form-container">
+    <form action="/update/{{ task.id }}" method="POST">
+      <div class="form-group">
+        <input type="text" name="content" id="content" value="{{ task.content }}">
+      </div>
+    <input type="submit" value="Update Task" class="btn btn-dark">
+    </form>
+  </div>
+</div>
+{% endblock%}
