@@ -125,16 +125,6 @@ td {
   justify-content: center;
 }
 
-/* .container {
-  max-width: 65%;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.container h1 {
-  text-align: center;
-  margin: 1rem 0;
-} */
-
 .form-group {
   margin: 1.2rem 0;
 }
@@ -177,24 +167,8 @@ label {
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
   background-color: #333;
   color: #fff;
-}
-.navbar ul {
-  display: flex;
-}
-.navbar a {
-  color: rgb(192, 192, 192);
-  padding: 0.45rem;
-  margin: 0 0.25rem;
-}
-
-.navbar a:hover {
-  color: #ffffff;
 }
 
 .alert {
@@ -219,12 +193,14 @@ label {
 
 /* Content */
 .content {
-  display: flex;
+  display: grid;
+  grid-template-areas: 'friends tasks tasks';
 }
 
 .friends {
+  grid-area: friends;
   background-color: #ccc;
-  width: 20%;
+  /* width: 20%; */
   height: 100vh;
 }
 
@@ -234,7 +210,7 @@ label {
 }
 
 .tasks {
-  flex-grow: 1;
+  grid-area: tasks;
 }
 
 /* User card */
@@ -265,4 +241,15 @@ a.disabled {
 
 .bg-white {
   background-color: #fff;
+}
+
+@media screen and (max-width: 700px) {
+  .content {
+    grid-template-areas:
+      'tasks'
+      'friends';
+  }
+  .friends {
+    margin-top: 1rem;
+  }
 }

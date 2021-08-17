@@ -87,7 +87,7 @@ def register():
        return render_template('register.html',
                                title="Register", message="Password not match!", status='danger')
     password = bcrypt.generate_password_hash(password).decode('utf-8')
-    user = User(first_name=first_name, last_name=last_name, email=email, password=password)
+    user = User(first_name=first_name, last_name=last_name, email=email.lower(), password=password)
     
     try:
       db.session.add(user)
@@ -111,7 +111,7 @@ def login():
   else:
     email = request.form['email']
     password = request.form['password']
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email.lower()).first()
     if not user:
       flash("User not found. Please register")
       return render_template('register.html', title="Register")
@@ -147,8 +147,12 @@ def update(id):
   if request.method == 'GET':
    return render_template('update.html', task=task)
   else:
+    task_update = request.form['content']
+    if not task_update:
+      flash("Update cannot be empty! ")
+      return redirect(url_for('update', id=id))
     try:
-       task.content = request.form['content']
+       task.content = task_update
        db.session.commit()
        return redirect(url_for('index', id=task.owner.id))
     except:

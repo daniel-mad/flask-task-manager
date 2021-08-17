@@ -1,5 +1,3 @@
-console.log('Hello :)');
-
 document.addEventListener('DOMContentLoaded', () => {
   (document.querySelectorAll('.notification .delete') || []).forEach(
     $delete => {
@@ -10,4 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   );
+
+  // Navbar toggle
+  const $burger = document.querySelector('.navbar-burger');
+  const $navbarTogler = document.querySelector('#navbar-toggler');
+  $burger.addEventListener('click', () => {
+    $navbarTogler.classList.toggle('is-active');
+  });
 });

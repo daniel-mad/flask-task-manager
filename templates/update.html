@@ -2,6 +2,13 @@
 <title>Todo Task Manager</title>
 {% endblock %} {% block body %}
 <div class="container">
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div class="notification is-danger is-light has-text-centered">
+    <button class="delete"></button>
+    <strong>{{ message }}</strong>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
   <h1 class="has-text-centered mt-3 is-size-2">Update Task</h1>
   <div class="form form-container">
     <form action="/update/{{ task.id }}" method="POST">
