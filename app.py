@@ -84,9 +84,13 @@ def register():
     password = request.form['password']
     password_confirm = request.form['confirm']
     if password != password_confirm:
-       return render_template('register.html',
-                               title="Register", message="Password not match!", status='danger')
+       flash("Password not match!")
+       return redirect(url_for('register'))
     password = bcrypt.generate_password_hash(password).decode('utf-8')
+    exist = User.query.filter_by(email=email).first()
+    if exist:
+      flash("User already exists")
+      return redirect(url_for('register'))
     user = User(first_name=first_name, last_name=last_name, email=email.lower(), password=password)
     
     try:
