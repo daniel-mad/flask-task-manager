@@ -1,46 +1,43 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Todo Task Manager</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container">
-  {% if message %}
-  <div class="alert alert-{{ status }}" >
-    <p>{{ message }}</p>
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div class="notification is-danger is-light has-text-centered">
+    <button class="delete"></button>
+    <strong>{{ message }}</strong>
   </div>
-  {% endif %}
-  <h1>{{ title }}</h1>
+  {% endfor %} {% endif %} {% endwith %}
+  <h1 class="is-size-2 has-text-centered">{{ title }}</h1>
   <div class="form form-container">
     <form action="{{ url_for('register') }}" method="POST">
       <div class="form-group">
         <label for="fname">First Name</label>
-        <input type="text" name="fname" required>
+        <input type="text" name="fname" required />
       </div>
       <div class="form-group">
         <label for="lname">Last Name</label>
-        <input type="text" name="lname" required >
+        <input type="text" name="lname" required />
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" required autocomplete="off">
+        <input type="email" name="email" required autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" required autocomplete="off">
+        <input type="password" name="password" required autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="confirm">Password Confirm</label>
-        <input type="password" name="confirm" required autocomplete="off">
+        <input type="password" name="confirm" required autocomplete="off" />
       </div>
-    <input type="submit" value="Register" class="btn btn-dark">
-    
-    <small class="ml-auto inline-block">
-      Allready have an account?
-      <a href="{{ url_for('login') }}">Sign In</a>
-    </small>
-    
+      <input type="submit" value="Register" class="btn btn-dark" />
+
+      <small class="ml-auto inline-block">
+        Allready have an account?
+        <a href="{{ url_for('login') }}">Sign In</a>
+      </small>
     </form>
   </div>
 </div>

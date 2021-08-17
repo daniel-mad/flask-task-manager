@@ -1,6 +1,6 @@
 from enum import unique
 from functools import reduce
-from flask import Flask, render_template, url_for, request, redirect, session, g
+from flask import Flask, render_template, url_for, request, redirect, session, g, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_bcrypt import Bcrypt
@@ -56,6 +56,9 @@ def index():
 
   if request.method == 'POST':
         task_content = request.form["content"]
+        if not task_content:
+          flash("Please enter task content!")
+          return redirect(url_for('index'))
         new_task = Todo(content=task_content, user_id=g.user_id)      
         try:
             db.session.add(new_task)
@@ -110,8 +113,8 @@ def login():
     password = request.form['password']
     user = User.query.filter_by(email=email).first()
     if not user:
-      return render_template('register.html',
-                               title="Register", message="User not found. Please register", status='danger')
+      flash("User not found. Please register")
+      return render_template('register.html', title="Register")
     if not bcrypt.check_password_hash(user.password, password):
       return render_template('login.html', title="Login",
                                message="Wrong Password", status='danger')

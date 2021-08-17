@@ -1,59 +1,68 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Todo Task Manager</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="content">
   <aside class="friends">
     <h2>Friends</h2>
-    <hr>
+    <hr />
     <div class="friends-container">
       <ul>
         {% for friend in friends%}
-          <li>
-            <div class="card bg-white">
-              <div class="card-body">
-                <p><strong>{{ friend.owner.first_name }} {{ friend.owner.last_name }}</strong></p>
-                <p><strong>Email:</strong> {{ friend.owner.email }}</p>
-              </div>
-              <div>
-                <a href="{{ url_for('read_user', user_id=friend.owner.id) }}" class="btn btn-blue">watch</a>
-              </div>
-              
+        <li>
+          <div class="card bg-white">
+            <div class="card-body card-content">
+              <p>
+                <strong
+                  >{{ friend.owner.first_name }} {{ friend.owner.last_name
+                  }}</strong
+                >
+              </p>
+              <p>{{ friend.owner.email }}</p>
+              <a
+                href="{{ url_for('read_user', user_id=friend.owner.id) }}"
+                class="button is-small btn-blue"
+                >watch</a
+              >
             </div>
-          </li>
+          </div>
+        </li>
         {% endfor %}
       </ul>
     </div>
   </aside>
-  <div class="container tasks">
-      <h1>Task Manager</h1>
-      <table>
-        <tr>
-          <th>Task</th>
-          <th>Date Added</th>
-          <th>Action</th>
-        </tr>
-        {% for task in task_in_html %}
-        <tr>
-          <td>{{ task.content }}</td>
-          <td>{{ task.date_time.date() }}</td>
-          <td>
-            <a href="{{ url_for('delete', id=task.id) }}">Delete</a>
-            <a href="/update/{{ task.id }}">Update</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </table>
+  <div class="container tasks is-fluid">
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <div class="notification is-danger is-light has-text-centered">
+      <button class="delete"></button>
+      <strong>{{ message }}</strong>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <h1 class="has-text-centered mt-1 is-size-2">Task Manager</h1>
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Date Added</th>
+        <th>Action</th>
+      </tr>
+      {% for task in task_in_html %}
+      <tr>
+        <td>{{ task.content }}</td>
+        <td>{{ task.date_time.date() }}</td>
+        <td>
+          <a href="{{ url_for('delete', id=task.id) }}">Delete</a>
+          <a href="/update/{{ task.id }}">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
     <div class="form">
       <form action="{{ url_for('index', id=user_id) }}" method="POST">
         <div class="form-group">
           <label for="content">Task to do:</label>
-          <input type="text" name="content" id="content">
+          <input type="text" name="content" id="content" />
         </div>
-      <input class="btn btn-dark" type="submit" value="Add New Task">
+        <input class="btn btn-dark" type="submit" value="Add New Task" />
       </form>
     </div>
   </div>

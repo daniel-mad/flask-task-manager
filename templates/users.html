@@ -1,29 +1,29 @@
-{% extends 'base.html' %}
-{% block head%}
+{% extends 'base.html' %} {% block head%}
 <title>Todo Task Manager | {title}</title>
-{% endblock%}
-
-{% block body %}
+{% endblock%} {% block body %}
 <div class="container">
-  <h1>Grant users view-only </h1>
+  <h1 class="has-text-centered mt-2 is-size-2">Grant users view-only</h1>
   {% for user in users%}
   <div class="card">
     <div class="card-body">
       <h4>Username: {{user.first_name}} {{user.last_name}}</h4>
       <h4>Email: {{user.email}}</h4>
     </div>
-        {% if user.id not in friends  %}
-        <div>
-        <a href="{{ url_for('allow_user', other_user_id=user.id)}}" class="btn btn-blue">Enable</a>
-      </div>
-        {% else%}
-        <div>
-      <a href="#" class="btn btn-blue disabled">Enabled</a>
+    {% if user.id not in friends %}
+    <div>
+      <a
+        href="{{ url_for('allow_user', other_user_id=user.id)}}"
+        class="btn btn-blue"
+        >Enable</a
+      >
     </div>
-        {% endif %}
-    
+    {% else%}
+    <div>
+      <a href="#" class="button btn-blue disabled">Enabled</a>
+    </div>
+    {% endif %}
   </div>
-  
+
   {% endfor%}
 </div>
 {% endblock %}

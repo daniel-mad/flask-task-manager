@@ -1,25 +1,23 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Todo Task Manager</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="content">
   <div class="container tasks">
-      <h1>{{user.first_name}} {{user.last_name}} read-only</h1>
-      <table>
-        <tr>
-          <th>Task</th>
-          <th>Date Added</th>
-        </tr>
-        {% for task in task_in_html %}
-        <tr>
-          <td>{{ task.content }}</td>
-          <td>{{ task.date_time.date() }}</td>
-        </tr>
-        {% endfor %}
-      </table>
+    <h1 class="has-text-centered mt-3">
+      {{user.first_name}} {{user.last_name}} read-only
+    </h1>
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Date Added</th>
+      </tr>
+      {% for task in task_in_html %}
+      <tr>
+        <td>{{ task.content }}</td>
+        <td>{{ task.date_time.date() }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
 </div>
 {% endblock%}

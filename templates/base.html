@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
-    <link rel="stylesheet" href="{{ url_for('static', filename ='css/main.css' ) }}">
-    
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename ='css/main.css' ) }}"
+    />
+    <script src="{{ url_for('static', filename='js/app.js')}}" defer></script>
     {% block head %}{% endblock %}
-</head>
-<body>
-  <nav class="navbar">
-    <h1>TASK FLASK | <span class="lead">{{ g.username }}</span> </h1>
-    <ul>
-      {% if g.user_id %}
-      <li>
-        <a href="{{ url_for('index') }}">Home</a>
-      </li>
-      <li>
-        <a href="{{ url_for('users') }}">All Users</a>
-      </li>
-      <li>
-        <a href="{{ url_for('logout') }}">Logout</a>
-      </li>
-      
-      {% else %}
-      <li>
-        <a href="{{ url_for('register') }}">Register</a>
-      </li>
-      <li>
-        <a href="{{ url_for('login') }}">Login</a>
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
+  </head>
+  <body>
+    <nav class="navbar">
+      <h1>
+        TASK FLASK {%if g.username %} |
+        <span class="lead">{{ g.username }}</span> {% endif%}
+      </h1>
+      <ul>
+        {% if g.user_id %}
+        <li>
+          <a href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li>
+          <a href="{{ url_for('users') }}">All Users</a>
+        </li>
+        <li>
+          <a href="{{ url_for('logout') }}">Logout</a>
+        </li>
+
+        {% else %}
+        <li>
+          <a href="{{ url_for('register') }}">Register</a>
+        </li>
+        <li>
+          <a href="{{ url_for('login') }}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+
     {% block body %}{% endblock %}
-</body>
+  </body>
 </html>
