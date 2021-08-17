@@ -126,7 +126,7 @@ td {
 
 .container{
     max-width: 65%;
-    margin:auto;
+    margin:0 auto;
     padding: 0 2rem;
 }
 .container h1{
@@ -155,15 +155,20 @@ label {
     display: inline-block;
     border: none;
     border-radius: 0.25rem;
-    padding: 0.4rem 1.3rem;
+    padding: 0.3rem 1.1rem;
     color: #333;
-    font-size: 1rem;
+    font-size: inherit;
     cursor: pointer;
     transition: opacity 0.2s ease-in;
 }
 .btn-dark{
     background: #333;
     color: #fff;
+}
+
+.btn-blue{
+  background: #1877f2;
+  color: #fff;
 }
 
 .btn:hover{
@@ -210,3 +215,54 @@ label {
     background-color: #d4edda;
     border-color: #c3e6cb;
 }
+
+/* Content */
+.content{
+  display: flex;
+}
+
+.friends{
+  background-color: #ccc;
+  width: 20%;
+  height: 100vh;
+}
+
+.friends h2{
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.tasks{
+  flex-grow: 1;
+}
+
+/* User card */
+.card{
+  background-color: #ccc;
+  display: flex;
+  padding: .75rem 1.25rem;
+  margin: 1rem;
+  border:1px solid transparent;
+  border-radius: .25rem;
+}
+.card-body{
+  flex-grow: 1;
+}
+.lead{
+  color:#1877f2
+}
+
+a.disabled {
+  background-color: #4f4f4f;
+  pointer-events: none;
+  cursor: default;
+}
+
+.friends-container{
+  font-size: 0.9rem;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+

@@ -11,14 +11,27 @@
 </head>
 <body>
   <nav class="navbar">
-    <h1>TASK FLASK</h1>
+    <h1>TASK FLASK | <span class="lead">{{ g.username }}</span> </h1>
     <ul>
+      {% if g.user_id %}
+      <li>
+        <a href="{{ url_for('index') }}">Home</a>
+      </li>
+      <li>
+        <a href="{{ url_for('users') }}">All Users</a>
+      </li>
+      <li>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </li>
+      
+      {% else %}
       <li>
         <a href="{{ url_for('register') }}">Register</a>
       </li>
       <li>
         <a href="{{ url_for('login') }}">Login</a>
       </li>
+      {% endif %}
     </ul>
   </nav>
     {% block body %}{% endblock %}

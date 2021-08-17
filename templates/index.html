@@ -6,7 +6,29 @@
 
 {% block body %}
 <div class="content">
-  <div class="container">
+  <aside class="friends">
+    <h2>Friends</h2>
+    <hr>
+    <div class="friends-container">
+      <ul>
+        {% for friend in friends%}
+          <li>
+            <div class="card bg-white">
+              <div class="card-body">
+                <p><strong>{{ friend.owner.first_name }} {{ friend.owner.last_name }}</strong></p>
+                <p><strong>Email:</strong> {{ friend.owner.email }}</p>
+              </div>
+              <div>
+                <a href="{{ url_for('read_user', user_id=friend.owner.id) }}" class="btn btn-blue">watch</a>
+              </div>
+              
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+  <div class="container tasks">
       <h1>Task Manager</h1>
       <table>
         <tr>
