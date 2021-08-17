@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   );
-
-  // Navbar toggle
-  const $burger = document.querySelector('.navbar-burger');
-  const $navbarTogler = document.querySelector('#navbar-toggler');
-  $burger.addEventListener('click', () => {
-    $navbarTogler.classList.toggle('is-active');
-  });
+});
+// Navbar toggle
+const $burger = document.querySelector('.navbar-burger');
+const $navbarTogler = document.querySelector('#navbar-toggler');
+$burger.addEventListener('click', () => {
+  $navbarTogler.classList.toggle('is-active');
 });
