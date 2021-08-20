@@ -1,5 +1,3 @@
-from enum import unique
-from functools import reduce
 from flask import Flask, render_template, url_for, request, redirect, session, g, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -30,7 +28,6 @@ class User(db.Model):
   def __repr__(self) -> str:
       return f"User({self.id}, {self.first_name}, {self.last_name}, {self.email} )"
       
-
 class Todo(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   content = db.Column(db.String(200), nullable=False)
@@ -80,7 +77,7 @@ def register():
   else:
     first_name = request.form['fname']
     last_name = request.form['lname']
-    email = request.form['email']
+    email = request.form['email'].lower()
     password = request.form['password']
     password_confirm = request.form['confirm']
     if password != password_confirm:
@@ -91,7 +88,7 @@ def register():
     if exist:
       flash("User already exists")
       return redirect(url_for('register'))
-    user = User(first_name=first_name, last_name=last_name, email=email.lower(), password=password)
+    user = User(first_name=first_name, last_name=last_name, email=email, password=password)
     
     try:
       db.session.add(user)
