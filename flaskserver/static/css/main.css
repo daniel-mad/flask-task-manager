@@ -16,7 +16,9 @@ body,
 html {
   font-family: sans-serif;
 }
-
+table {
+  table-layout: fixed;
+}
 table,
 td,
 th {
@@ -241,6 +243,9 @@ a.disabled {
 
 .bg-white {
   background-color: #fff;
+}
+.word-wrap {
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 700px) {

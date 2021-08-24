@@ -47,7 +47,7 @@
       </tr>
       {% for task in task_in_html %}
       <tr>
-        <td>{{ task.content }}</td>
+        <td class="word-wrap">{{ task.content }}</td>
         <td>{{ task.date_time.date() }}</td>
         <td>
           <a href="{{ url_for('delete', id=task.id) }}">Delete</a>
